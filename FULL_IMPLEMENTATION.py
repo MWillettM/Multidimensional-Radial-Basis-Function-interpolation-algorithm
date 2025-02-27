@@ -51,7 +51,7 @@ def FGP(data,values,c,q,error):
         data.append([lvalue,lset,rf.step4(lset,x_i,c)])
     data = sorted(data, key = lambda x:x[0])
 
-    #setup complete, we now look to find the coeffificents for the interpolant to within the prescribed error.
+    #setup complete, we now look to find the coefficients for the interpolant to within the prescribed error.
     k = 0
     err = np.max(np.abs(r))
     while err > error:
