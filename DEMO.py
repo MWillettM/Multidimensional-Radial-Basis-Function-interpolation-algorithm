@@ -86,3 +86,6 @@ def FGP_DEMO(n,c,q,d,error):
     #alpha is the constant in the interpolant we generate
     #err  is the error in our interpolant.
     return k, lambdas, alpha, err
+
+k, lambdas, alpha, err = FGP_DEMO(100,1,20,100,1e-5)
+print(k)
