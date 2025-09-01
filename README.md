@@ -6,7 +6,7 @@
 ## ✨ Features
 - Core solver returns interpolation coefficients (`lambdas`) and constant (`alpha`).
 - Supports multiple radial basis function (RBF) kernels: **multiquadric, Gaussian, inverse multiquadric, inverse quadratic**.
-- Deterministic runs with **seed control** (`np.random.default_rng`).
+- Reproducible runs with **seed control** (`np.random.default_rng`).
 - Helper functions to generate sample points from balls, cubes, grids, or Gaussian distributions.
 - Helper function `interp` to evaluate the interpolant.
 - Returns per-iteration diagnostics (`helpful_stats`) for analysis.
