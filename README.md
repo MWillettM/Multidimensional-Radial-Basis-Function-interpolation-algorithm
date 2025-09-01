@@ -1,5 +1,5 @@
 <h1 align="center">Faul–Goodsell–Powell (FGP) Algorithm</h1>
-<p align="center"><em>Fast NumPy implementation of RBF interpolation in many dimensions</em></p>
+<p align="center"><em>Fast NumPy implementation to generate an RBF interpolant in high dimensions</em></p>
 
 ---
 
@@ -13,6 +13,8 @@
 - The interpolant generated, s(x), is of the form 
 
     $s(x) = \sum_i^n \lambda_i \phi(\|x-x_i\|) + \alpha$
+
+  where $\phi$ is your chosen kernel function.
 ---
 
 ## 📦 Requirements
