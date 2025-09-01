@@ -21,11 +21,6 @@
 - Python 3.9+
 - `numpy`, `pandas`
 
-Install with:
-```bash
-pip install numpy pandas
-```
-
 ---
 
 ## 🚀 Quick Start
