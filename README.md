@@ -76,7 +76,7 @@ FGP(data, values, c=0.1, q=30, error=1e-5, seed=42,
 ---
 
 ## 📖 Citation
-If you use this repo, please cite:
+If you use this repo, please cite this repo and the original paper:
 
 > A.C. Faul, G. Goodsell, M.J.D. Powell.  
 > *A Krylov subspace algorithm for multiquadric interpolation in many dimensions.*  
