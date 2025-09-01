@@ -84,5 +84,7 @@ If you use this repo, please cite this repo and the original paper:
 > [doi:10.1093/imanum/drh021](https://doi.org/10.1093/imanum/drh021)
 
 ---
+**Tags:** radial-basis-functions · rbf-interpolation · fgp-algorithm · scattered-data · high-dimensional-data · numerical-analysis
+
 
 
