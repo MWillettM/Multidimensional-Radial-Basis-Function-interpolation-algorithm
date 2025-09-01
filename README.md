@@ -39,7 +39,7 @@ num_iterations, lambdas, alpha, err, stats = FGP(
     c=0.1, q=20, error=1e-5,
     max_iterations=1000, rbf_function=mq
 )
-print(num_iterations, err)
+
 ```
 
 ---
