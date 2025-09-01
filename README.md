@@ -1,51 +1,87 @@
 **FAUL-GOODSEN-POWELL algorithm**
 
-This is a Python implementation of the Faul-Goodsen-Powell algorithm which produces an interpolant for d-dimensional data using the multiquadric radial basis functions. It works well for even very high dimensional data.
+A robust NumPy implementation of the FGP algorithm for scattered, high-dimensional data.
 
-The interpolant, s(x) is of the form 
+The interpolant generated, s(x), is of the form 
 
 $s(x) = \sum_i^n \lambda_i \phi(\|x-x_i\|) + \alpha$
 
-where the $x_i$ are the data centers and $\phi(x) = (x^2+c^2)^{\frac{1}{2}}$ is the multiquadric radial basis function.
+✨ Features
 
-The algorithm returns the coefficients $\lambda_i$ and the value of $\alpha$.
+The core function returns the interpolation coefficients and constant.
 
-**INSTALLATION/REQUIREMENTS:**
+Supports multiple radial basis function (RBF) kernels: multiquadric, Gaussian, inverse multiquadric, inverse quadratic.
 
-Python  and Numpy
+You can set a seed value for reproducibility.
 
-**ALGORITHM DESCRIPTION** - inputs - FGP(data, values, q, c, error)
+Includes helper functions to generate example data sample from the d-dimensional (ball, cube, grid, Gaussian).
 
-- Data centers ($x_i$) and values at those points ($f_i$)
+Includes helper function to evaluate your interpolant (interp).
 
-- Error
+Returns stats from throughout the run for diagnostics or analysis (helpful_stats)
 
-- Two parameters for the algorithm - $q$ and $c$:
+📦 Requirements
 
-- $c>0$, using a smaller value ($O(10^{-1})$ or smaller) is advised. This is the 'shape parameter' for the multiquadric.
+Python 3.9+
 
-- $q>0$, using a value of q=30 is standard - feel free to go between 5 and 50. A rule of thumb is that smaller q means each iteration is quicker, but we may need more iterations for convergence overally. 
+numpy, pandas
 
-**ALGORITHM DESCRIPTION** - outputs
+🚀 Quick Start
+import numpy as np
+from helper_functions import points_in_unit_ball, mq
+from fgp_general import FGP
 
-- Iteration count - k
+# Sample data
+centers = points_in_unit_ball(100, 2, seed=42)
+values = np.random.default_rng(42).uniform(0, 1, 100)
 
-- Interpolant coefficients - $\lambda_i$
+# Run FGP
+num_iterations, lambdas, alpha, err, stats = FGP(
+    data=centers, values=values,
+    c=0.1, q=20, error=1e-5,
+    max_iterations=1000, rbf_function=mq
+)
 
-- Interpolant constant - $\alpha$
+🧮 API
+FGP(data, values, c=0.1, q=30, error=1e-5, seed=42,
+    max_iterations=1000, rbf_function=mq)
 
-- Interpolation error at the centers - err
+Args:
 
+data: (n, d) array – interpolation centres
 
+values: (n,) array – function values
 
-You can try the DEMO version or use the FULL IMPLEMENTATION version as well.
+c: RBF shape parameter
 
-The DEMO version lets you vary the distribution that the test data is drawn from:
+q: neighborhood size (20–50 typical)
 
-- The unit d-ball
+error: stopping tolerance
 
-- The unit d-cube
+seed: RNG seed
 
-- The unit d-Normal
+max_iterations: iteration cap
 
-- The integer grid in d-dimensions.
+rbf_function: one of mq, gaussian, inv_mq, inv_quadratic
+
+Returns:
+(iterations, lambdas, alpha, error, stats)
+
+🧪 Evaluate the Interpolant
+from helper_functions import interp, mq
+y_star = interp([0.1, 0.2], lambdas, alpha, centers, 0.1, mq)
+
+⚙️ Notes
+
+q too small → unstable; too large → slower. Stick tpo between 20 and 50, independent of your dataset size.
+
+NaNs/divergence usually mean poor kernel/shape parameter choice.
+
+📖 Citation
+
+If you use this repo, please cite:
+
+A.C. Faul, G. Goodsell, M.J.D. Powell.
+A Krylov subspace algorithm for multiquadric interpolation in many dimensions.
+IMA J. Numer. Anal. 25 (2005), 1–24. doi:10.1093/imanum/drh021
+
