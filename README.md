@@ -85,8 +85,4 @@ If you use this repo, please cite this repo and the original paper:
 
 ---
 
-## Tags
-Radial Basis functions, Krylov solver
-
----
 
